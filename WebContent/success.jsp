@@ -106,7 +106,7 @@ $(document).ready(function() {
 <table>
 <tr>
 <td>
-<form action='DisplayAllController' method='post'>
+<form action='JourneyDetailsController' method='post'>
 
 <input type="submit" value="Show My data">
 

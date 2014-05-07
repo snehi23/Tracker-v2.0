@@ -18,7 +18,7 @@
 
  	<mapping class="com.tracker.model.Employee"/>
  	<mapping class="com.tracker.model.User_credentials"/>
- 
+ 	<mapping class="com.tracker.model.Details"/>
   
 </session-factory>
 </hibernate-configuration>

@@ -34,4 +34,24 @@
     <servlet-name>UserInputController</servlet-name>
     <url-pattern>/UserInputController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JourneyDetailsController</display-name>
+    <servlet-name>JourneyDetailsController</servlet-name>
+    <servlet-class>com.tracker.controller.JourneyDetailsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JourneyDetailsController</servlet-name>
+    <url-pattern>/JourneyDetailsController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayStatisticsController</display-name>
+    <servlet-name>DisplayStatisticsController</servlet-name>
+    <servlet-class>com.tracker.controller.DisplayStatisticsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayStatisticsController</servlet-name>
+    <url-pattern>/DisplayStatisticsController</url-pattern>
+  </servlet-mapping>
 </web-app>

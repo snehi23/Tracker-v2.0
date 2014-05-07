@@ -1,5 +1,8 @@
 package com.tracker.service;
 
+import java.util.ArrayList;
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -48,6 +51,48 @@ public class UserInputService {
 			
 		}
 		
+		
+	}
+	
+	public ArrayList<Details> getUserDetails() {
+		
+		
+		ArrayList<Details> list_of_info = new ArrayList<Details>();
+		Session session = DBConnectionManager.openSession();
+		Transaction tx = null;
+		
+	
+		try {
+			
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("from Details");
+			list_of_info = (ArrayList) query.list();
+			
+			for(Details d : list_of_info) {
+				
+				System.out.println(d.getTrain_journey_id());
+				System.out.println(d.getDOJ());
+				System.out.println(d.getTrain());
+				
+			}
+			
+			tx.commit();
+			
+			
+		} catch (Exception e) {
+			if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+					
+		} finally {
+			
+			session.close();
+			
+		}
+		
+		return list_of_info;
 		
 	}
 
