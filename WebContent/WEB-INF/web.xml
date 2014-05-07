@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Tracker v2.0</display-name>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeController</display-name>
+    <servlet-name>EmployeeController</servlet-name>
+    <servlet-class>com.tracker.controller.EmployeeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeController</servlet-name>
+    <url-pattern>/EmployeeController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>com.tracker.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserInputController</display-name>
+    <servlet-name>UserInputController</servlet-name>
+    <servlet-class>com.tracker.controller.UserInputController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserInputController</servlet-name>
+    <url-pattern>/UserInputController</url-pattern>
+  </servlet-mapping>
+</web-app>
