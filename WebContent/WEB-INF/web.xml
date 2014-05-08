@@ -54,4 +54,14 @@
     <servlet-name>DisplayStatisticsController</servlet-name>
     <url-pattern>/DisplayStatisticsController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayLocationController</display-name>
+    <servlet-name>DisplayLocationController</servlet-name>
+    <servlet-class>com.tracker.controller.DisplayLocationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayLocationController</servlet-name>
+    <url-pattern>/DisplayLocationController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,7 +1,5 @@
 package com.tracker.service;
 
-
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,6 +36,8 @@ public class LoginService {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("from User_credentials where userid = '"+userId+"'");
+			query.setCacheable(true);
+			query.setCacheRegion("query.UserCredentials");
 			user_credentials = (User_credentials)query.uniqueResult();
 			tx.commit();
 			

@@ -1,16 +1,18 @@
 package com.tracker.service;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.persistence.Cacheable;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.tracker.model.Element;
 import com.tracker.util.DBConnectionManager;
 
 public class DisplayStatisticsService {
@@ -34,6 +36,7 @@ public class DisplayStatisticsService {
 			
 			Query query = session.createSQLQuery("select Train, count(*) as all_train from tracker group by Train order by all_train desc");
 			
+
 			List<Object[]> list = query.list();
 			
 			for(Object[] e : list) {
@@ -74,6 +77,7 @@ public class DisplayStatisticsService {
 			tx.begin();
 			
 			Query query = session.createSQLQuery("select From_Station, count(*) as all_from from tracker group by From_Station order by all_from desc");
+			
 			
 			List<Object[]> list = query.list();
 			
@@ -117,6 +121,7 @@ public class DisplayStatisticsService {
 			tx.begin();
 			
 			Query query = session.createSQLQuery("select To_Station, count(*) as all_to from tracker group by To_Station order by all_to desc");
+			
 			
 			List<Object[]> list = query.list();
 			
@@ -203,6 +208,7 @@ public class DisplayStatisticsService {
 			
 			Query query = session.createSQLQuery("select (select  cast(year(DOJ) as char(20))), count(*) from tracker group by (select year(DOJ))");
 			
+			
 			List<Object[]> list = query.list();
 			
 			for(Object[] e : list) {
@@ -273,7 +279,7 @@ public class DisplayStatisticsService {
 	}
 	
 	public LinkedHashMap<String,Integer> getDailyDetails() {
-		
+
 		LinkedHashMap<String,Integer> group_by_day = new LinkedHashMap<String,Integer>();
 		Session session = DBConnectionManager.openSession();
 		Transaction tx = null;
@@ -285,6 +291,7 @@ public class DisplayStatisticsService {
 			tx.begin();
 			
 			Query query = session.createSQLQuery("select (select dayname(DOJ)), count(*) from tracker group by (select dayname(DOJ)) order by dayofweek(DOJ)");
+			
 			
 			List<Object[]> list = query.list();
 			

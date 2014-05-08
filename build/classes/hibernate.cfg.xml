@@ -15,10 +15,18 @@
    <property name="hibernate.connection.username">root</property>
    
    <property name="hibernate.connection.password">root</property>
-
- 	<mapping class="com.tracker.model.Employee"/>
+   
+   <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+   
+   <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+   
+   <property name="hibernate.cache.use_second_level_cache">true</property>
+   
+   <property name="hibernate.cache.use_query_cache">true</property>
+   
  	<mapping class="com.tracker.model.User_credentials"/>
  	<mapping class="com.tracker.model.Details"/>
+ 	<mapping class="com.tracker.model.StationLocation"/>
   
 </session-factory>
 </hibernate-configuration>

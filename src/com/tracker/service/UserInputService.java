@@ -2,7 +2,6 @@ package com.tracker.service;
 
 import java.util.ArrayList;
 
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -35,7 +34,8 @@ public class UserInputService {
 					query.setParameter(5, details.getClasses());
 					query.setParameter(6, details.getComments());
 					query.executeUpdate();
-					
+					query.setCacheable(true);
+					query.setCacheRegion("query.InsertDetails");
 			tx.commit();
 			
 			
@@ -67,6 +67,9 @@ public class UserInputService {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("from Details");
+			query.setCacheable(true);
+			query.setCacheRegion("query.FetchDetails");
+			
 			list_of_info = (ArrayList) query.list();
 			
 			for(Details d : list_of_info) {

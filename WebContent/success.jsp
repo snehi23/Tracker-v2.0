@@ -19,9 +19,35 @@ $(function() {
   });
   
 $(document).ready(function() {
-    $("input#autocomplete").autocomplete({
+    $("input#autocomplete1").autocomplete({
         source: function(request, response){
             var options = ["Rajdhani Express","Nagpur Pune Express","Pune Nagpur Express","Sangamitra Express","Sampraka-kranti Express","Garibrath Express"];
+            var results = [request.term];
+            var regex = new RegExp(request.term, "i");
+            for(var i = 0; i< options.length; i++){
+                if (options[i].match(regex))
+                    results.push(options[i]);
+            }
+            response(results);
+        }       
+    });
+    
+    $("input#autocomplete2").autocomplete({
+        source: function(request, response){
+            var options = ["SBC","YPR","NGP","PUNE","MAO","HGT","ADI"];
+            var results = [request.term];
+            var regex = new RegExp(request.term, "i");
+            for(var i = 0; i< options.length; i++){
+                if (options[i].match(regex))
+                    results.push(options[i]);
+            }
+            response(results);
+        }       
+    });
+    
+    $("input#autocomplete3").autocomplete({
+        source: function(request, response){
+            var options = ["SBC","YPR","NGP","PUNE","MAO","HGT","ADI"];
             var results = [request.term];
             var regex = new RegExp(request.term, "i");
             for(var i = 0; i< options.length; i++){
@@ -37,7 +63,7 @@ $(document).ready(function() {
 
 </head>
 <body>
- <%-- <marquee><font color="Green">Welcome ${sessionScope['user'].userid}</font></marquee> --%>
+<marquee><font color="Green">Welcome ${sessionScope['user'].userid}</font></marquee>
  
 <H3>User Input</H3>
 
@@ -53,19 +79,19 @@ $(document).ready(function() {
 
 <tr>
 	<td>Train  :</td>
-	<td><INPUT TYPE="TEXT" NAME="Train"  id="autocomplete" SIZE="20"></td>
+	<td><INPUT TYPE="TEXT" NAME="Train"  id="autocomplete1" SIZE="20"></td>
 	
 </tr>
 
 <tr>
 	<td>From  :</td>
-	<td><INPUT TYPE="TEXT" NAME="From" SIZE="20"></td>
+	<td><INPUT TYPE="TEXT" NAME="From" id="autocomplete2" SIZE="20"></td>
 	
 </tr>
 
 <tr>
 	<td>To  :</td>
-	<td><INPUT TYPE="TEXT" NAME="To" SIZE="20"></td>
+	<td><INPUT TYPE="TEXT" NAME="To"  id="autocomplete3" SIZE="20"></td>
 	
 </tr>
 
@@ -115,7 +141,7 @@ $(document).ready(function() {
 <td>
 <form action='RefreshLocationController' method='post'>
 
-<input type="submit" value="Force Refresh">
+<input type="submit" value="Force Refresh" disabled="disabled">
 
 </form>
 </td>

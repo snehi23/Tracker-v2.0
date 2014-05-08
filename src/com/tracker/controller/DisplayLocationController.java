@@ -1,44 +1,42 @@
 package com.tracker.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tracker.model.StationLocation;
+import com.tracker.model.StationLocationPlot;
+import com.tracker.service.DisplayLocationService;
 
-import javax.servlet.http.HttpSession;
-import com.tracker.model.User_credentials;
-import com.tracker.service.LoginService;
-
-
-public class LoginController extends HttpServlet {
+public class DisplayLocationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			 throws ServletException, IOException {	
 		
-		HttpSession session = request.getSession(true);
+		DisplayLocationService displayLocationService = new DisplayLocationService();
 		
-		 String user = request.getParameter("user");	
-		 String password = request.getParameter("pass");
+		ArrayList<StationLocation> station_loc_list = displayLocationService.getLocationDetails();
+		
+		request.setAttribute("station_loc_list", station_loc_list);
+		
+		ArrayList<StationLocationPlot> station_loc_plot = displayLocationService.getMapPlotDetails();
+		
+		request.setAttribute("station_loc_plot", station_loc_plot);
+		
+		
+		RequestDispatcher rd = null;
 		 
-		 LoginService loginService = new LoginService();
-		 boolean result = loginService.authenticate(user, password);
-		 User_credentials user_credentails = loginService.getUserByUserId(user);
+        rd = request.getRequestDispatcher("/displaylocation.jsp");
+        
+        rd.forward(request, response);
+	
 		 
-		 System.out.println(user_credentails.getId()+" "+user_credentails.getUserid()+" "+user_credentails.getPass());
-		 
-		 
-		 
-		 if(result == true){
-			 session.setAttribute("user", user_credentails);		
-			 response.sendRedirect("success.jsp");
-		 }
-		 else{
-			 response.sendRedirect("error.jsp");
-		 }
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

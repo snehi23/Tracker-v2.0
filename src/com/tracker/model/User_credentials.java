@@ -5,9 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 
 @Entity
 @Table(name="user_credentials")
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class User_credentials {
 	
 	@Id @GeneratedValue
