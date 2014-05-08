@@ -19,6 +19,8 @@ public class Details {
 	String comments;
 	
 		
+	
+	
 	public Details() {
 		super();
 	}
