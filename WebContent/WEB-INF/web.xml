@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>Tracker v2.0</display-name>
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -63,5 +63,15 @@
   <servlet-mapping>
     <servlet-name>DisplayLocationController</servlet-name>
     <url-pattern>/DisplayLocationController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegistrationController</display-name>
+    <servlet-name>RegistrationController</servlet-name>
+    <servlet-class>com.tracker.controller.RegistrationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistrationController</servlet-name>
+    <url-pattern>/RegistrationController</url-pattern>
   </servlet-mapping>
 </web-app>

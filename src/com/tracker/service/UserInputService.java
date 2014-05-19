@@ -12,31 +12,40 @@ import com.tracker.util.DBConnectionManager;
 public class UserInputService {
 	
 	
-	public void setUserDetails(Details details) {
+	public boolean setUserDetails(Details details, String userid) {
 		
-	
+
 		Session session = DBConnectionManager.openSession();
 		Transaction tx = null;
+		boolean flag=false;
 		
-		System.out.println(details.getTrain_journey_id()+" "+details.getDOJ()+" "+details.getTrain()+" "+details.getFrom_Station()+" "+details.getTo_Station()+" "+details.getClasses()+" "+details.getComments());
+		System.out.println(details.getTrain_journey_id()+" "+details.getDOJ()+" "+details.getTrain()+" "+details.getFrom_Station()+" "+details.getTo_Station()+" "+details.getClasses()+" "+details.getBerth()+" "+details.getComments());
 	
 		try {
 			
+			if(userid!=null) {
+        	
 			tx = session.getTransaction();
 			tx.begin();
 			
-			Query query = session.createSQLQuery("insert into tracker(train_journey_id,DOJ,Train,From_Station,To_Station,Classes,Comments) values (?,?,?,?,?,?,?)");
-					query.setParameter(0, details.getTrain_journey_id());
+			Query query = session.createSQLQuery("insert into tracker(train_journey_id,DOJ,Train,From_Station,To_Station,Classes,berth,Comments,user_id) values(?,?,?,?,?,?,?,?,?)");
+					query.setParameter(0, 0);
 					query.setParameter(1, details.getDOJ());
 					query.setParameter(2, details.getTrain());
 					query.setParameter(3, details.getFrom_Station());
 					query.setParameter(4, details.getTo_Station());
 					query.setParameter(5, details.getClasses());
-					query.setParameter(6, details.getComments());
+					query.setParameter(6, details.getBerth());
+					query.setParameter(7, details.getComments());
+					query.setParameter(8, userid);
 					query.executeUpdate();
 					query.setCacheable(true);
 					query.setCacheRegion("query.InsertDetails");
 			tx.commit();
+			
+			flag=true;
+			}
+			
 			
 			
 		} catch (Exception e) {
@@ -51,7 +60,7 @@ public class UserInputService {
 			
 		}
 		
-		
+		return flag;
 	}
 	
 	public ArrayList<Details> getUserDetails() {

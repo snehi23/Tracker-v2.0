@@ -20,23 +20,27 @@ public class UserInputController extends HttpServlet {
 			 throws ServletException, IOException {	
 		
 		HttpSession session = request.getSession(true);
-		
-		
-		
+	
         String doj = request.getParameter("DOJ");
         String Train = request.getParameter("Train");
         String From = request.getParameter("From");
         String To = request.getParameter("To");
         String Classes = request.getParameter("classes");
+        String berth = request.getParameter("berth");
         String Comments = request.getParameter("comments");
+        
+        String userid = (String)session.getAttribute("userid");
 		 
 		 UserInputService userInputService = new UserInputService();
 		 
-		 Details details = new Details(0,doj ,Train , From, To, Classes, Comments);
+		 Details details = new Details(0,doj ,Train.replaceAll("\\P{L}", " ").trim() , From.replaceAll(".*\\(", "").replaceAll("\\)", "").trim(), To.replaceAll(".*\\(", "").replaceAll("\\)", "").trim(), Classes,berth, Comments);
 		 
-		 userInputService.setUserDetails(details);
-		 	
-			 response.sendRedirect("displayinfo.jsp");
+		 if(userInputService.setUserDetails(details,userid))
+		 response.sendRedirect("displayinfo.jsp");
+		 else {
+		 response.sendRedirect("error.jsp");
+		 
+		 }
 		 
 	}
 	@Override

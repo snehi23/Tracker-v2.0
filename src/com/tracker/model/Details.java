@@ -20,19 +20,20 @@ public class Details {
 	String from_Station;
 	String to_Station;
 	String classes;
+	String berth;
 	String comments;
 	
-		
+	
 	
 	
 	public Details() {
 		super();
+		
 	}
-
-
+	
 	public Details(int train_journey_id, String dOJ, String train,
 			String from_Station, String to_Station, String classes,
-			String comments) {
+			String berth, String comments) {
 		super();
 		this.train_journey_id = train_journey_id;
 		DOJ = dOJ;
@@ -40,9 +41,9 @@ public class Details {
 		this.from_Station = from_Station;
 		this.to_Station = to_Station;
 		this.classes = classes;
+		this.berth = berth;
 		this.comments = comments;
 	}
-	
 	
 	public int getTrain_journey_id() {
 		return train_journey_id;
@@ -80,15 +81,18 @@ public class Details {
 	public void setClasses(String classes) {
 		this.classes = classes;
 	}
+	public String getBerth() {
+		return berth;
+	}
+	public void setBerth(String berth) {
+		this.berth = berth;
+	}
 	public String getComments() {
 		return comments;
 	}
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
-	
-	
 		
 
 }

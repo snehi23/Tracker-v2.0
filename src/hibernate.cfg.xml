@@ -27,6 +27,7 @@
  	<mapping class="com.tracker.model.User_credentials"/>
  	<mapping class="com.tracker.model.Details"/>
  	<mapping class="com.tracker.model.StationLocation"/>
+ 	<mapping class="com.tracker.model.User"/>
   
 </session-factory>
 </hibernate-configuration>

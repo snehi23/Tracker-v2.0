@@ -6,37 +6,43 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import javax.servlet.http.HttpSession;
 
-import com.tracker.model.User;
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+
 import com.tracker.model.User_credentials;
 import com.tracker.service.LoginService;
+import com.tracker.service.RegisterService;
 
-
-public class LoginController extends HttpServlet {
+public class RegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			 throws ServletException, IOException {	
 		
-		HttpSession session = request.getSession(true);
+			HttpSession session = request.getSession(true);
 		
-		 String userid = request.getParameter("user");	
-		 String password = request.getParameter("pass");
-		 
-		 
-		 LoginService loginService = new LoginService();
-		 boolean result = loginService.authenticate(userid, password);
-		 User user = loginService.getUserByUserId(userid);
-		 
-		 System.out.println(user.getUsername()+" "+user.getPassword());
-		 
+			String name = request.getParameter("name");
+	        String username = request.getParameter("username");
+	        String email = request.getParameter("email");
+	        String pass = request.getParameter("password");
+	    
+	        
+	        
+	        System.out.println(" "+name+" "+username+" "+email+" "+pass);
+	        
+	        ConfigurablePasswordEncryptor encryptor = new ConfigurablePasswordEncryptor();
+	        encryptor.setAlgorithm("SHA-512");
+	        encryptor.setPlainDigest(true);
+	        String password = encryptor.encryptPassword(pass);	
+			
+			
+		RegisterService registerService = new RegisterService();
+		 boolean result = registerService.register(name,username,email,password);
 		 
 		 
 		 if(result == true){
-			 session.setAttribute("userid", user.getUsername());		
+			 		
 			 response.sendRedirect("success.jsp");
 		 }
 		 else{
