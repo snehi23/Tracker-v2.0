@@ -74,4 +74,44 @@
     <servlet-name>RegistrationController</servlet-name>
     <url-pattern>/RegistrationController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutController</display-name>
+    <servlet-name>LogoutController</servlet-name>
+    <servlet-class>com.tracker.controller.LogoutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutController</servlet-name>
+    <url-pattern>/LogoutController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteRecordController</display-name>
+    <servlet-name>DeleteRecordController</servlet-name>
+    <servlet-class>com.tracker.controller.DeleteRecordController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteRecordController</servlet-name>
+    <url-pattern>/DeleteRecordController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserInputEditController</display-name>
+    <servlet-name>UserInputEditController</servlet-name>
+    <servlet-class>com.tracker.controller.UserInputEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserInputEditController</servlet-name>
+    <url-pattern>/UserInputEditController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserInputUpdateController</display-name>
+    <servlet-name>UserInputUpdateController</servlet-name>
+    <servlet-class>com.tracker.controller.UserInputUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserInputUpdateController</servlet-name>
+    <url-pattern>/UserInputUpdateController</url-pattern>
+  </servlet-mapping>
 </web-app>

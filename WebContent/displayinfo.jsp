@@ -143,9 +143,9 @@
 				</ul>
 				<div class="comments"><p> <c:out value="${d1.comments}"></c:out> </p>
 				
-				<a href="DeleteRecordController?doj=<c:out value="${d1.DOJ}"/>" onclick="return confirm('Are you sure you want to delete this journey?');">Delete Journey</a>
+				<a href="DeleteRecordController?recordid=<c:out value="${d1.train_journey_id}"/>" onclick="return confirm('Are you sure you want to delete this journey?');">Delete Journey</a>
 				
-				<a href="UserInputEditController?doj=<c:out value="${d1.DOJ}"/>&train=<c:out value="${d1.train}"/>">Edit Journey</a>
+				<a href="UserInputEditController?recordid=<c:out value="${d1.train_journey_id}"/>">Edit Journey</a>
 				
 				</div>					 
 				</c:forEach>

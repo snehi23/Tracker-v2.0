@@ -1,7 +1,6 @@
 package com.tracker.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,34 +9,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.tracker.model.Details;
-import com.tracker.service.UserInputService;
+import com.tracker.service.RecordManipulationService;
 
-public class JourneyDetailsController extends HttpServlet {
+
+public class DeleteRecordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			 throws ServletException, IOException {	
 		
-		HttpSession session = request.getSession(true);
-		
-		String userid = (String) session.getAttribute("userid");
-		
-		UserInputService userInputservice = new UserInputService();
-		
-		
-		
-		ArrayList<Details> details_list = userInputservice.getUserDetails(userid);
-		
-		request.setAttribute("details_list", details_list);
-		
-		RequestDispatcher rd = null;
-		 
-        rd = request.getRequestDispatcher("/displayinfo.jsp");
+
+    	HttpSession session = request.getSession(true);
+       	String temp = request.getParameter("recordid");
+   
+       	Integer train_journey_id = Integer.parseInt(temp);
+       	
+        System.out.println(train_journey_id);
+       
+        String userid = (String) session.getAttribute("userid");
         
-        rd.forward(request, response);
-	
-		 
+        RecordManipulationService manipulationService = new RecordManipulationService();
+        RequestDispatcher rd = null;
+        
+       
+        if(manipulationService.deleteRecord(train_journey_id)){
+        	
+        	request.setAttribute("Record_Confirmation", "Journey Deleted Successfully !!!");
+        	
+        	rd = request.getRequestDispatcher("/JourneyDetailsController");
+        	
+        	rd.forward(request, response);
+		 }
+		 else {
+			 response.sendRedirect("error.jsp");
+		 }
+        
+       
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

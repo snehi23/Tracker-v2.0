@@ -63,10 +63,11 @@ public class UserInputService {
 		return flag;
 	}
 	
-	public ArrayList<Details> getUserDetails() {
+	public ArrayList<Details> getUserDetails(String userid) {
 		
 		
 		ArrayList<Details> list_of_info = new ArrayList<Details>();
+		
 		Session session = DBConnectionManager.openSession();
 		Transaction tx = null;
 		
@@ -75,19 +76,12 @@ public class UserInputService {
 			
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from Details");
+			Query query = session.createQuery("from Details where user_id = :user_id");
+			query.setParameter("user_id", userid);
 			query.setCacheable(true);
 			query.setCacheRegion("query.FetchDetails");
 			
 			list_of_info = (ArrayList) query.list();
-			
-			for(Details d : list_of_info) {
-				
-				System.out.println(d.getTrain_journey_id());
-				System.out.println(d.getDOJ());
-				System.out.println(d.getTrain());
-				
-			}
 			
 			tx.commit();
 			

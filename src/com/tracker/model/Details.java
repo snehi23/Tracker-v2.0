@@ -22,6 +22,7 @@ public class Details {
 	String classes;
 	String berth;
 	String comments;
+	String user_id;
 	
 	
 	
@@ -31,9 +32,13 @@ public class Details {
 		
 	}
 	
+	
+	
+	
+	
 	public Details(int train_journey_id, String dOJ, String train,
 			String from_Station, String to_Station, String classes,
-			String berth, String comments) {
+			String berth, String comments, String user_id) {
 		super();
 		this.train_journey_id = train_journey_id;
 		DOJ = dOJ;
@@ -43,8 +48,21 @@ public class Details {
 		this.classes = classes;
 		this.berth = berth;
 		this.comments = comments;
+		this.user_id = user_id;
 	}
-	
+
+
+
+
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
 	public int getTrain_journey_id() {
 		return train_journey_id;
 	}

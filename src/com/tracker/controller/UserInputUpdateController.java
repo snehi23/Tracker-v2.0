@@ -10,46 +10,53 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.tracker.model.Details;
-import com.tracker.model.User_credentials;
-import com.tracker.service.LoginService;
-import com.tracker.service.UserInputService;
+import com.tracker.service.RecordManipulationService;
 
-public class UserInputController extends HttpServlet {
+public class UserInputUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			 throws ServletException, IOException {	
 		
 		HttpSession session = request.getSession(true);
+		RequestDispatcher rd = null;
 	
-        String doj = request.getParameter("DOJ");
+		String doj = request.getParameter("DOJ");
         String Train = request.getParameter("Train");
         String From = request.getParameter("From");
         String To = request.getParameter("To");
         String Classes = request.getParameter("classes");
         String berth = request.getParameter("berth");
         String Comments = request.getParameter("comments");
-        
         String userid = (String)session.getAttribute("userid");
-		 
-		 UserInputService userInputService = new UserInputService();
-		 
-		 Details details = new Details(0,doj ,Train.replaceAll("\\P{L}", " ").trim() , From.replaceAll(".*\\(", "").replaceAll("\\)", "").trim(), To.replaceAll(".*\\(", "").replaceAll("\\)", "").trim(), Classes,berth, Comments,userid);
-		 
-		 if(userInputService.setUserDetails(details,userid)) {
-			 
-			 	RequestDispatcher rd = null;
-		        rd = request.getRequestDispatcher("/JourneyDetailsController");
-		        
-		        request.setAttribute("Record_Confirmation", "Journey Added Successfully !!!");
-          
+        int journeyid = (Integer) session.getAttribute("journey_id");
+        
+        Details details = new Details();
+        details.setDOJ(doj);
+        details.setTrain(Train);
+        details.setFrom_Station(From);
+        details.setTo_Station(To);
+        details.setClasses(Classes);
+        details.setBerth(berth);
+        details.setComments(Comments);
+        details.setUser_id(userid);
+        details.setTrain_journey_id(journeyid);
+        
+        RecordManipulationService recordManipulationService = new RecordManipulationService();
+        
+		if(recordManipulationService.updateRecord(details)) {
+			
+			
+		        rd = request.getRequestDispatcher("Editinfo.jsp");
+				request.setAttribute("Record_Confirmation", "Journey Updated Successfully !!!");
+
 		        rd.forward(request, response);
-		 }
+		        
+	} else {
+		
+		 		response.sendRedirect("error.jsp");
+	}
 		 
-		 else {
-		 response.sendRedirect("error.jsp");
-		 
-		 }
 		 
 	}
 	@Override
