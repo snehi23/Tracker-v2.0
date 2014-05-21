@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -18,9 +20,7 @@
 </head>
 <body>
 
-<%-- <marquee><font color="Red">${sessionScope['userid uniqeness']}</font></marquee> --%>
-
-	 <form class="form-signin" role="form" name="loginform" action="RegistrationController" method="post" >
+	 <form:form class="form-signin" role="form" name="loginform" action="RegisterUser.html" method="post" >
 		<h2>Create account</h2>
 		<div id="error" style="color:red"></div>
 		<input id="name" type="text" name="name" maxlength="30" class="form-control" placeholder="Name" required autofocus>
@@ -73,6 +73,6 @@
 			<input type="checkbox" value="remember-me"> By clicking "Create account" below, you agree to the Terms of Service.
 		</label>
 		<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Create account">Create Account</button>
-	</form>
+	</form:form>
 </body>
 </html>
